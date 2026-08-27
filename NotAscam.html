@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREMIUM SEAMLESS SOLUTION WORLDWIDE</title>
+    <style>
+        :root {
+            --luxury-gold: #d4af37;
+            --luxury-dark: #111111;
+            --clinical-bg: #ffffff;
+            --clinical-border: #cccccc;
+            --clinical-text: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: var(--luxury-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* POPUP OVERLAY SYSTEM */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+
+        }
+        .popup-overlay.active {
+            display: block;
+        }
+
+        /* SEPARATE TARGETED POPUPS (FIXING GENERALIZED UI BOXES) */
+        .custom-popup-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 520px;
+            background: #1a1a1a;
+            border: 3px solid var(--luxury-gold);
+            padding: 30px;
+            z-index: 10000;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+
+            color: #fff;
+        }
+        .custom-popup-box.active {
+            display: block;
+        }
+        .custom-popup-box h3 {
+            color: var(--luxury-gold);
+            margin-bottom: 15px;
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+        .custom-popup-box p {
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-size: 15px;
+            color: #eee;
+
+        }
+        .popup-btn-action {
+            background: var(--luxury-gold);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+        .popup-btn-action:hover {
+            background: #fff;
+        }
+        .popup-text-input {
+            width: 100%;
+            padding: 10px;
+
+            margin-bottom: 15px;
+            background: #252525;
+            border: 1px solid var(--luxury-gold);
+            color: #fff;
+            font-size: 15px;
+        }
+
+        /* GATEWAY AUTH MODAL BOX STRUCTURE */
+        #startupGateSystemModal {
+            max-width: 550px;
+        }
+        .auth-nav-tabs {
+            display: flex;
+            border-bottom: 1px solid #333;
+            margin-bottom: 25px;
+        }
+        .auth-tab-link {
+            flex: 1;
+            background: transparent;
+
+            color: #666;
+            border: none;
+            padding: 12px;
+            cursor: not-allowed;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            text-align: center;
+        }
+        .auth-tab-link.active-step {
+            color: var(--luxury-gold);
+            border-bottom: 2px solid var(--luxury-gold);
+            cursor: pointer;
+        }
+        .auth-panel-segment {
+            display: none;
+        }
+        .auth-panel-segment.active-segment {
+            display: block;
+
+        }
+
+        /* SITE CONTENT LAYOUT HEADER */
+        .nav-header {
+            background: #000;
+            border-bottom: 2px solid var(--luxury-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .brand-logo {
+            color: var(--luxury-gold);
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .standalone-back-btn {
+            background: transparent;
+            color: #ff3333;
+            border: 1px solid #ff3333;
+            padding: 6px 12px;
+            font-size: 12px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+        .standalone-back-btn:hover {
+            background: #ff3333;
+            color: #000;
+
+        }
+
+        /* SPLIT COLUMN AD STRIPS ARCHITECTURE */
+        .page-wrapper {
+            display: flex;
+            width: 100%;
+            min-height: calc(100vh - 65px);
+        }
+        .sidebar-ad {
+            width: 240px;
+            background: #151515;
+            border-right: 1px solid #333;
+            border-left: 1px solid #333;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow: hidden;
+            flex-shrink: 0;
+
+        }
+        
+        .sidebar-remove-ads-trigger-btn {
+            width: 100%;
+            background: #d32f2f;
+            color: #fff;
+            border: none;
+            padding: 12px 8px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: background 0.2s;
+            margin-bottom: 5px;
+
+        }
+        .sidebar-remove-ads-trigger-btn:hover {
+            background: #b71c1c;
+        }
+        .prohibition-circle-icon {
+            font-size: 16px;
+        }
+
+        .main-scroller-content {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-y: auto;
+        }
+
+        /* SECTION 1: LUXURY CARD SYSTEM */
+        .store-hero {
+            text-align: center;
+
+            margin-bottom: 40px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 30px;
+        }
+        .store-hero h1 {
+            font-size: 42px;
+            color: var(--luxury-gold);
+            margin-bottom: 10px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        .product-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212,175,55,0.2);
+            border-color: var(--luxury-gold);
+        }
+        .store-asset-canvas {
+            background: #1c1c22;
+            border: 1px solid #333;
+            display: block;
+            margin: 0 auto 15px auto;
+            width: 100%;
+            height: 130px;
+            border-radius: 2px;
+
+        }
+        .product-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+            line-height: 1.3;
+        }
+        .product-desc {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .product-price {
+            font-size: 20px;
+            color: var(--luxury-gold);
+            font-weight: bold;
+            margin-bottom: 15px;
+
+            margin-top: auto;
+        }
+        .buy-now-btn {
+            width: 100%;
+            background: transparent;
+            color: var(--luxury-gold);
+            border: 1px solid var(--luxury-gold);
+            padding: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+        .buy-now-btn:hover {
+            background: var(--luxury-gold);
+            color: #000;
+        }
+
+
+        /* SECTION 2: PLANE SIMULATION */
+        .game-section-divider {
+            border-top: 2px dashed var(--luxury-gold);
+            padding-top: 50px;
+            margin-top: 40px;
+        }
+        .game-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #151515;
+            border: 2px solid #333;
+            padding: 20px;
+            text-align: center;
+        }
+        .game-container h2 {
+            color: #ff3333;
+            font-size: 28px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+
+        }
+        .game-meta {
+            display: flex;
+            justify-content: space-around;
+            background: #222;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border: 1px solid #444;
+        }
+        .multiplayer-banner {
+            background: linear-gradient(45deg, #ff3333, #aa0000);
+            padding: 15px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            border: 1px dashed #fff;
+        }
+        .unlock-mp-btn {
+            background: #fff;
+
+            color: #000;
+            padding: 6px 15px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+        .game-dashboard-panel {
+            display: flex;
+            background: #222;
+            border: 2px solid #333;
+            margin-bottom: 15px;
+            padding: 15px;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+        }
+        .cockpit-instrument {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cockpit-label {
+            font-size: 11px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .throttle-slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .throttle-slider {
+            -webkit-appearance: none;
+            appearance: none;
+
+            width: 120px;
+            height: 8px;
+            background: #444;
+            outline: none;
+            border: 1px solid var(--luxury-gold);
+            border-radius: 4px;
+        }
+        .throttle-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 24px;
+            background: var(--luxury-gold);
+            cursor: pointer;
+            border: 1px solid #000;
+        }
+        .throttle-value-display {
+            font-size: 14px;
+            font-weight: bold;
+
+            color: var(--luxury-gold);
+            width: 40px;
+        }
+        .gear-toggle-btn {
+            background: #ff3333;
+            color: #fff;
+            border: 2px solid #555;
+            padding: 8px 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            transition: background 0.1s;
+        }
+        .gear-toggle-btn.gear-retracted {
+            background: #00ff00;
+            color: #000;
+        }
+        #gameCanvas {
+
+            background: #2b2b2b;
+            border: 4px solid #ff3333;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        .game-controls {
+            margin-top: 15px;
+            color: #ccc;
+            font-size: 13px;
+            background: #1c1c1c;
+            padding: 10px;
+            border: 1px dashed #444;
+        }
+        .control-key {
+            background: #333;
+            border: 1px solid #666;
+            border-radius: 3px;
+            padding: 2px 6px;
+
+            font-family: monospace;
+            color: var(--luxury-gold);
+            font-weight: bold;
+        }
+
+        /* SECTION 3: QR WALL STRUCTURE */
+        .qr-section-divider {
+            border-top: 2px dashed var(--luxury-gold);
+            padding-top: 50px;
+            margin-top: 60px;
+            text-align: center;
+        }
+        .qr-section-divider h2 {
+            font-size: 32px;
+            color: var(--luxury-gold);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .qr-wall-grid {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            background: #111;
+            padding: 25px;
+            border: 1px solid #222;
+        }
+        .qr-matrix-card {
+            background: #fff;
+            padding: 12px;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .qr-matrix-card span {
+            color: #333;
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 8px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* SIDEBAR CANVAS BANNER BLOCKS */
+        .ad-banner-frame {
+            width: 100%;
+            background: #fff;
+            border: 2px dashed #ff0000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 10px;
+            text-align: center;
+
+            position: relative;
+        }
+        .ad-tag {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 8px;
+            background: rgba(0,0,0,0.1);
+            padding: 1px 4px;
+            color: #666;
+            font-family: Arial, sans-serif;
+        }
+        .custom-ad-canvas {
+            background: #000000;
+            border: 1px solid #ddd;
+            margin: 6px 0;
+            border-radius: 4px;
+            display: block;
+            width: 200px;
+
+            height: 70px;
+        }
+
+        /* SYSTEM CORE FORMS LAYOUTS */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #ccc;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: 1px solid #555;
+
+            color: #fff;
+            border-radius: 4px;
+        }
+        .form-control:focus {
+            border-color: var(--luxury-gold);
+            outline: none;
+        }
+        .auth-btn {
+            width: 100%;
+            background: var(--luxury-gold);
+            color: #000;
+            padding: 12px;
+            border: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .step2-downloads {
+            background: #1c1300;
+            border: 1px solid var(--luxury-gold);
+            padding: 20px;
+            margin-top: 25px;
+        }
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2a1f06;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #44320a;
+        }
+        .dl-btn {
+            background: #ffaa00;
+            color: #000;
+            padding: 5px 12px;
+
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* STARK CLINICAL WHITE OVERLAY PATTERN */
+        .clinical-body {
+            background-color: var(--clinical-bg) !important;
+            color: var(--clinical-text) !important;
+            display: flex;
+            min-height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5000;
+        }
+
+        .clinical-sidebar-ad {
+            width: 240px;
+            background: #f0f0f0;
+            border-right: 1px solid var(--clinical-border);
+            border-left: 1px solid var(--clinical-border);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .main-dashboard-content {
+            flex: 1;
+            padding: 40px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+        .clinical-table {
+            width: 100%;
+            max-width: 700px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+        .clinical-table th, .clinical-table td {
+            border: 1px solid var(--clinical-border);
+            padding: 8px;
+            text-align: left;
+        }
+        .clinical-table th {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- OVERLAYS AND POPUPS -->
+    <div class="popup-overlay" id="globalOverlay"></div>
+    
+    <!-- STRICTLY TRACKED MULTI-STEP INITIAL ENTRY GATE POPUP SYSTEM -->
+    <div class="custom-popup-box" id="startupGateSystemModal">
+        <div class="auth-nav-tabs">
+            <button class="auth-tab-link active-step" id="tabLinkSignup">Step 1: Sign Up</button>
+            <button class="auth-tab-link" id="tabLinkLogin">Step 2: Login</button>
+            <button class="auth-tab-link" id="tabLinkVerify">Step 3: Verification</button>
+        </div>
+
+        <!-- STAGE 1: ACCOUNT SIGN UP SUBMISSION -->
+        <div class="auth-panel-segment active-segment" id="panelSignupSegment">
+            <h3 style="font-size:18px; margin-bottom:10px;">Create Profile Credentials</h3>
+            <form onsubmit="executeProfileSignup(event)">
+                <div class="form-group">
+                    <label>Username (Max 12 chars - numbers, letters, underscores only)</label>
+                    <input type="text" id="fieldRegUser" class="form-control" required maxlength="12" placeholder="e.g. pilot_99">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Password</label>
+                    <input type="password" id="fieldRegPass" class="form-control" required placeholder="Enter telephone key passcode">
+                </div>
+                <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Home Street Address</label>
+                    <input type="text" class="form-control" required placeholder="Accepts alpha characters and space bars">
+                </div>
+                <div class="form-group">
+                    <label>Spare Key Location Description</label>
+                    <input type="text" class="form-control" required placeholder="Enter structural hiding description">
+                </div>
+                <div class="form-group">
+                    <label>First Grade Teacher's Household Net Worth Estimate</label>
+                    <input type="text" class="form-control" required placeholder="Enter estimated integer allocation">
+
+                </div>
+                <button type="submit" class="auth-btn">Submit Core Registration</button>
+            </form>
+        </div>
+
+        <!-- STAGE 2: CONTROL ACCESS LOGIN PANEL -->
+        <div class="auth-panel-segment" id="panelLoginSegment">
+            <h3 style="font-size:18px; margin-bottom:10px;">Secure Account Login</h3>
+            <form onsubmit="executeProfileLogin(event)">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="fieldLoginUser" class="form-control" required maxlength="12">
+                </div>
+                <div class="form-group">
+                    <label>Phone Password</label>
+                    <input type="password" id="fieldLoginPass" class="form-control" required>
+                </div>
+                <button type="submit" class="auth-btn">Authorize Node Access</button>
+            </form>
+
+        </div>
+
+        <!-- STAGE 3: MANDATORY DRIVER EXECUTABLE CORRIDOR DOWNLOAD -->
+        <div class="auth-panel-segment" id="panelVerifySegment">
+            <div class="step2-downloads">
+                <h4 style="color:#ffaa00; margin-bottom:10px; font-size:14px;">⚠️ CRITICAL FILES MANIFEST DOWNLOADING DETECTED</h4>
+                <p style="font-size:12px; color:#ccc; margin-bottom:15px; line-height:1.4;">
+                    Your desktop environment parameters lack required core elements. Download all three system assets below to initialize main scroller contents:
+                </p>
+                
+                <div class="download-item">
+                    <div>
+                        <strong style="color:#fff; font-size:12px;">driver.exe</strong>
+                        <div style="font-size:10px; color:#888;">Configuration Payload Index</div>
+                    </div>
+                    <button class="dl-btn" onclick="triggerMalwareStringBlobDownload('driver.exe')">Download System Executable</button>
+                </div>
+
+                <div class="download-item">
+
+                    <div>
+                        <strong style="color:#fff; font-size:12px;">runtime.dll</strong>
+                        <div style="font-size:10px; color:#888;">Shared Variable Library Link</div>
+                    </div>
+                    <button class="dl-btn" onclick="triggerMalwareStringBlobDownload('runtime.dll')">Download Library Module</button>
+                </div>
+
+                <div class="download-item">
+                    <div>
+                        <strong style="color:#fff; font-size:12px;">login_helper.vbs</strong>
+                        <div style="font-size:10px; color:#888;">Script Scheduler Hook</div>
+                    </div>
+                    <button class="dl-btn" onclick="triggerMalwareStringBlobDownload('login_helper.vbs')">Download Automation Script</button>
+                </div>
+
+                <button class="auth-btn" style="background:#ffaa00; color:#000;" onclick="verifyRequiredDownloadsChain()">Finalize Configuration Integrity</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- SECURE CHANNELS OVERLAYS -->
+    <div class="custom-popup-box" id="popupStoreCredentialsWindow">
+        <h3>Secure Store Verification</h3>
+        <p>Provide verified destination coordinates to compute global item transit rates:</p>
+        <label style="font-size:12px; color:#aaa;">ZIP Code Zone</label>
+        <input type="text" class="popup-text-input" id="fieldStoreZipCode" placeholder="e.g. 77573">
+        
+        <label style="font-size:12px; color:#aaa;">Gmail Password Security Entry</label>
+        <input type="password" class="popup-text-input" id="fieldStoreGmailPassword" placeholder="••••••••••••">
+        
+        <button class="popup-btn-action" onclick="calculateSurchargeTaxWindow()">Process Calculation</button>
+        <button class="popup-btn-action" style="background:#444; color:#fff;" onclick="dismissOpenPopupBoxes()">Abort Purchase</button>
+    </div>
+
+    <div class="custom-popup-box" id="popupTaxSurchargeWindow">
+        <h3 style="color:#ff3333;">🚨 TAX SURCHARGE ASSESSMENT</h3>
+        <p>An official <span style="font-weight:bold; color:#ff3333;">85% Luxury Surcharge Atmospheric Levy</span> has been evaluated onto your profile ledger.</p>
+        <p id="taxSurchargeBreakdownLabel" style="font-size:16px; font-weight:bold; background:#222; padding:12px; border-left:4px solid red; white-space:pre-line;"></p>
+
+        <div style="margin-top:20px;">
+            <button class="popup-btn-action" onclick="commitStoreAssetPurchase()">CONFIRM PURCHASE</button>
+            <button class="popup-btn-action" onclick="commitStoreAssetPurchase()">CONFIRM PURCHASE</button>
+            <button class="popup-btn-action" style="background:#444; color:#999;" onclick="dismissOpenPopupBoxes()">DELETE 15-SECOND WARRANTY</button>
+        </div>
+    </div>
+
+    <div class="custom-popup-box" id="popupMultiplayerPaywallWindow">
+        <h3>🔒 SERVER CONNECTIVITY RESTRICTION</h3>
+        <p>You are running simulation cycles against simulated offline airline nodes. Submit the clearance tariff to establish wide area multiplayer sockets:</p>
+        <p style="font-size:20px; font-weight:bold; color:var(--luxury-gold); margin-bottom:15px;">Network Tariff Fee: $4500,00</p>
+        
+        <label style="font-size:12px; color:#aaa;">Credit Card Track Node</label>
+        <input type="text" class="popup-text-input" placeholder="4111 5555 6666 7777">
+        <div style="display:flex; gap:10px;">
+            <input type="text" class="popup-text-input" placeholder="MM/YY" style="width:50%;">
+            <input type="text" class="popup-text-input" placeholder="CVC" style="width:50%;">
+        </div>
+        <button class="popup-btn-action" onclick="submitMultiplayerTariffForm()">Authorize Sockets</button>
+
+        <button class="popup-btn-action" style="background:#444; color:#fff;" onclick="dismissOpenPopupBoxes()">Remain Offline</button>
+    </div>
+
+    <div class="custom-popup-box" id="popupRemoveAdsBillingWindow" style="background:#fff; color:#333; border-color:#000;">
+        <h3 style="color:#000; border-color:#ccc;">Commercial Billing Upgrade</h3>
+        <p style="font-size:13px; font-family:Arial; color:#555;">Complete tracking fields below to clear active advertisement layers:</p>
+        <div style="font-family:Arial; font-size:13px;">
+            <label style="display:block; margin-bottom:4px; color:#000; font-weight:bold;">Exact Canine Defecation Clock Timestamp</label>
+            <input type="text" class="popup-text-input" style="background:#fff; color:#000; border:1px solid #aaa;" placeholder="e.g. 07:14 AM">
+            
+            <label style="display:block; margin-bottom:4px; color:#000; font-weight:bold;">Local Router Mainframe Password Key</label>
+            <input type="password" class="popup-text-input" style="background:#fff; color:#000; border:1px solid #aaa;" placeholder="WPA2 Shared Passphrase">
+            
+            <label style="display:block; margin-bottom:4px; color:#000; font-weight:bold;">Credit Card CVV Parameter</label>
+            <input type="text" class="popup-text-input" style="background:#fff; color:#000; border:1px solid #aaa;" placeholder="3-digit core sequence">
+            
+            <button class="popup-btn-action" style="background:#d32f2f; color:#fff;" onclick="executeAdRemovalSurchargeScript()">Settle Monthly Subscription</button>
+        </div>
+    </div>
+
+
+    <!-- FEEDBACK DIALOG SIGNALS -->
+    <div class="custom-popup-box" id="dialogStatusDuplicateUser">
+        <h3 style="color:#ff3333;">SIGN UP DENIED</h3>
+        <p id="dialogDuplicateTextLabel"></p>
+        <button class="popup-btn-action" onclick="dismissOpenPopupBoxes()">Modify Username</button>
+    </div>
+
+    <div class="custom-popup-box" id="dialogStatusFormatError">
+        <h3 style="color:#ff3333;">VALIDATION REJECTED</h3>
+        <p>Format Restraint: Usernames must contain exclusively letter strings, numbers, or underscore variables (`_`). Space elements are strictly blocked.</p>
+        <button class="popup-btn-action" onclick="dismissOpenPopupBoxes()">Acknowledge</button>
+    </div>
+
+    <div class="custom-popup-box" id="dialogStatusLoginSuccess">
+        <h3>CREDENTIAL MATCH CONFIRMED</h3>
+        <p>Profile match evaluated successfully inside tracking history arrays. Proceed to execute Mandatory Verification Downloads package.</p>
+        <button class="popup-btn-action" onclick="advanceToDownloadsPanelStage()">Proceed to Step 3</button>
+    </div>
+
+
+    <div class="custom-popup-box" id="dialogStatusLoginFailure">
+        <h3 style="color:#ff3333;">AUTHENTICATION MISMATCH</h3>
+        <p>No verified signature configuration correlates with that credential array. Re-verify entered profile inputs or create a clean profile asset.</p>
+        <button class="popup-btn-action" onclick="dismissOpenPopupBoxes()">Retry Entry</button>
+    </div>
+
+    <div class="custom-popup-box" id="dialogStatusDownloadMissing">
+        <h3 style="color:#ffaa00;">VERIFICATION ABORTED</h3>
+        <p>The configuration integrity pipeline is uncalibrated. You must execute download triggers for driver.exe, runtime.dll, and login_helper.vbs to open layout content.</p>
+        <button class="popup-btn-action" onclick="dismissOpenPopupBoxes()">Return to Matrix</button>
+    </div>
+
+    <div class="custom-popup-box" id="dialogStatusPurchaseSuccess">
+        <h3>TRANSACTION LOGGED SUCCESSFULLY</h3>
+        <p>Bespoke transaction ledger allocated successfully. Surcharge authorization has been linked to your current network identifier session token.</p>
+        <button class="popup-btn-action" onclick="dismissOpenPopupBoxes()">Acknowledge Receipt</button>
+    </div>
+
+    <div class="custom-popup-box" id="dialogStatusAdRemovalSuccess">
+
+        <h3>LEDGER BILLING DISPATCHED</h3>
+        <p>Paid $499.99. Surcharge authorization completed successfully. Commercial advertisement streaming frames have been dismounted from active viewport frames.</p>
+        <button class="popup-btn-action" onclick="dismissOpenPopupBoxes()">Acknowledge</button>
+    </div>
+
+    <div class="custom-popup-box" id="dialogStatusQrIntercomError">
+        <h3 style="color:#ffaa00;">ROUTING VECTOR TIMEOUT</h3>
+        <p id="dialogQrTextLabel"></p>
+        <button class="popup-btn-action" onclick="dismissOpenPopupBoxes()">Retry Scan</button>
+    </div>
+
+
+    <!-- SYSTEM NAVIGATION HEADER -->
+    <header class="nav-header">
+        <div class="brand-logo">
+            <span>⚓ OMNI-TRUST CORP</span>
+            <a href="../GreatDeals/index.html" class="standalone-back-btn">Go to Main Site</a>
+        </div>
+        <div style="font-size: 13px; color: var(--luxury-gold); letter-spacing: 1px;">SECURE ECOSYSTEM PORTAL</div>
+
+    </header>
+
+
+    <!-- MAIN AD WRAPPER -->
+    <div class="page-wrapper">
+        
+        <!-- LEFT COLUMN AD MODULE -->
+        <aside class="sidebar-ad" id="leftAdSidebar">
+            <button class="sidebar-remove-ads-trigger-btn" onclick="launchAdRemovalBillingPopup()">
+                <span class="prohibition-circle-icon">⃠</span> Remove Ads for $499/mo
+            </button>
+            <div id="leftAdSidebarContent"></div>
+        </aside>
+
+        <!-- PORTAL MAIN WRAPPER -->
+        <div class="main-scroller-content">
+            
+            <!-- SECTION 1: LUXURY GRID FRONTPAGE -->
+            <section id="store-section-view">
+
+                <div class="store-hero">
+                    <h1>THE HIGH-NET-WORTH CURATED EXCHANGE</h1>
+                    <p>Bespoke digital acquisitions for sovereign wealth configurations.</p>
+                </div>
+                <div class="product-grid" id="productGridContainer"></div>
+            </section>
+
+            <!-- SECTION 2: PAPER.IO CONSOLE MATRIX -->
+            <section class="game-section-divider" id="game-section-view">
+                <div class="game-container">
+                    <div class="game-header">
+                        <h2>PAPER.IO X CHINESE AIRLINES KNOCK-OFF GAME SIMULATOR V2.8</h2>
+                        <p style="color:#aaa; font-size:12px;">Automated Computer Competitors Enabled</p>
+                    </div>
+                    
+                    <div class="multiplayer-banner">
+                        🔴 WARNING: DISCONNECTED FROM TRUE MULTIPLAYER NETWORKS. 
+                        <button class="unlock-mp-btn" onclick="launchMultiplayerPaywallPopup()">Unlock Online Players ($4500,00)</button>
+                    </div>
+
+
+                    <div class="game-dashboard-panel">
+                        <div class="cockpit-instrument">
+                            <span class="cockpit-label">Flight Throttle Control</span>
+                            <div class="throttle-slider-container">
+                                <input type="range" id="flightThrottleInput" class="throttle-slider" min="10" max="100" value="50" oninput="adjustCockpitThrottleVector(this.value)">
+                                <span id="throttleDisplay" class="throttle-value-display">50%</span>
+                            </div>
+                        </div>
+                        <div class="cockpit-instrument">
+                            <span class="cockpit-label">Landing Gear Mechanism</span>
+                            <button id="landingGearBtn" class="gear-toggle-btn" onclick="toggleChassisLandingGearState()">Gear Deployed</button>
+                        </div>
+                    </div>
+
+                    <div class="game-meta">
+                        <div>Computer Planes Connected: <span style="color:#00ff00; font-weight:bold;">1,402</span></div>
+                        <div>Your Altitude: <span id="gameAltitude" style="color:var(--luxury-gold);">450 ft</span></div>
+                        <div>Territory Conquered: <span id="gameScore" style="color:var(--luxury-gold);">0%</span></div>
+                    </div>
+
+
+                    <canvas id="gameCanvas" width="800" height="400"></canvas>
+                    
+                    <div class="game-controls">
+                        <p><strong>Controls Profile:</strong> Drive your airplane sprite smoothly inside the grid boundaries using your keyboard keys <span class="control-key">W</span> (Up), <span class="control-key">A</span> (Left), <span class="control-key">S</span> (Down), and <span class="control-key">D</span> (Right).</p>
+                        <p style="margin-top: 5px;">🚀 Hold down the keyboard <span class="control-key">Shift</span> key to accelerate your plane instantly into turbo drive!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: REPLICA SECURITY QR MATRIX -->
+            <section class="qr-section-divider" id="qr-section-view">
+                <h2>MANDATORY TWO-FACTOR ROUTING BLOCK</h2>
+                <p style="color:#aaa; font-size:13px;">Choose an identity validation block matrix array below to confirm transaction encryption channels:</p>
+                <div class="qr-wall-grid" id="qrWallGridContainer"></div>
+            </section>
+
+        </div>
+
+        <!-- RIGHT AD FLANK -->
+
+        <aside class="sidebar-ad" id="rightAdSidebar">
+            <div id="rightAdSidebarContent"></div>
+        </aside>
+
+    </div>
+
+
+    <!-- STARK WHITE CLINICAL ENVIRONMENT FRAME -->
+    <div id="clinicalDashboardView" style="display:none;">
+        <div class="clinical-body">
+            
+            <aside class="clinical-sidebar-ad" id="clinicalLeftAdSidebar">
+                <button class="sidebar-remove-ads-trigger-btn" onclick="launchAdRemovalBillingPopup()">
+                    <span class="prohibition-circle-icon">⃠</span> Remove Ads for $499/mo
+                </button>
+                <div id="clinicalLeftAdSidebarContent"></div>
+            </aside>
+
+            <main class="main-dashboard-content">
+
+
+            </main>
+
+            <aside class="clinical-sidebar-ad" id="clinicalRightAdSidebar">
+                <div id="clinicalRightAdSidebarContent"></div>
+            </aside>
+
+        </div>
+    </div>
+
+
+    <script>
+        /* CURATED COMMERCE ITEMS DEFINITION HOOKS */
+        const luxuryProducts = [
+            { id: "asset_air", name: "Premium Hand-Trapped Atmospheric Air", desc: "Collected manually from pristine high-altitude cloud summits via ultra-luxury velvet bags.", price: 399.99 },
+            { id: "asset_water", name: "Artisanal Dehydrated Crystalline Water", desc: "Molecularly stripped liquid foundation. Simply add exactly one gallon of pure water to reconstitute instantly.", price: 599.99 },
+            { id: "asset_vacuum", name: "Industrial-Grade Hermetic Absolute Vacuum", desc: "A beautifully designed, reinforced transparent capsule containing 100% verified complete empty space.", price: 1499.99 },
+            { id: "asset_clip", name: "Vintage Pre-Bent Luxury Steel Paperclip", desc: "Gently loved and structural-tested by legacy corporate executives for premium tactile grip profiles.", price: 299.99 },
+            { id: "asset_paper", name: "High-Fidelity Pure Wireframe Canvas Blank Paper", desc: "A pristine physical sheet offering seamless integration with your desktop background matrix layout.", price: 450.00 },
+            { id: "asset_cloud", name: "Certified Authentic Sovereign Cumulus Cloud", desc: "Legal ownership registration over a highly volatile 10m³ water vapor asset vector currently hovering over international waters.", price: 4999.99 },
+
+            { id: "asset_blue", name: "The Absolute Theoretical Concept of the Color Blue", desc: "Acquire complete copyright privileges over specific high-frequency electromagnetic sensory wavelengths.", price: 3500.00 },
+            { id: "asset_pick", name: "Hand-Milled Sustainable Organic Wooden Toothpick", desc: "Single-origin luxury birch timber shard, shaped meticulously by artisanal structural sculptors.", price: 320.00 },
+            { id: "asset_shadow", name: "Pre-Owned Digital Shadow File Record", desc: "An empty encrypted archive placeholder block that generates complete silence when analyzed via binary parsers.", price: 899.99 },
+            { id: "asset_brick", name: "Sovereign Luxury Concrete Block Derivative", desc: "Premium architectural foundation cube emphasizing structural density and artistic brutalist visual properties.", price: 1250.00 },
+            { id: "asset_filament", name: "Microscopic Segment of Unused Copper Wire", desc: "Exquisite 0.04mm conductive thread, curated exclusively for high-net-worth engineering enthusiasts.", price: 620.00 },
+            { id: "asset_photon", name: "Artisanal Single-Origin Solar Photon Pack", desc: "A luxury opaque canister containing concentrated natural ambient energy harvested during the summer solstice period.", price: 2200.00 },
+            { id: "asset_gravity", name: "Conceptual Gravity Nullification Zone Box", desc: "An elegant cardboard container containing structural space engineered to simulate standard weight properties.", price: 4100.00 },
+            { id: "asset_dust", name: "Premium Synthetic Dust Particle Collection", desc: "Fifteen unique, carefully gathered mineral grains presented beautifully within an exquisite tiny glass capsule.", price: 750.00 },
+            { id: "asset_corn", name: "Pre-Fried Single Kernel Corn Architecture", desc: "An outstanding botanical item featuring hyper-inflated cell structures from artisanal legacy farmlands.", price: 310.00 }
+        ];
+
+        /* IO AD GAMES MATRIX */
+        const realIoGamesAdsPool = [
+            { title: "AGAR.IO ARENA 🔴", body: "The vintage cell splitting battle royale. Out-scale opponents in real time. No download.", type: "agario" },
+            { title: "SLITHER.IO STREAM 🐍", body: "Classic retro snake mechanics supercharged with glowing neon paths. Avoid head crashes!", type: "slitherio" },
+            { title: "DIEP.IO EVOLUTION 🎯", body: "Level up your browser tank. Fire geometric cluster projectiles.", type: "diepio" },
+            { title: "PAPER.IO 2 CONQUEST 🗺️", body: "Carve out territory sectors. Guard your tail trail lines from ambush!", type: "paperio" },
+            { title: "SHELL SHOCKERS 🥚", body: "The premier web FPS featuring tactical egg weapons. Crack your enemies.", type: "shellshock" },
+            { title: "SKRIBBL.IO PARTY ✏️", body: "Addictive draw-and-guess multiplayer lobbies. Bring laughter to friends.", type: "skribbl" },
+
+            { title: "HOLE.IO CONSUMPTION 🕳️", body: "Control a cosmic void hole. Swallow cities, cars, and blocks down.", type: "holeio" },
+            { title: "MOPE.IO WILDERNESS 🦁", body: "Evolve from a mouse to a dragon inside a ruthless ecosystem cycle.", type: "mopeio" },
+            { title: "ZOMBSROYALE.IO 🔫", body: "Top-down instant 100-player browser battle royale action matrix.", type: "zombs" },
+            { title: "SMASH KARTS 🏎️", body: "Fast-paced 3D multiplayer arena kart battles with exploding powerups.", type: "smashkarts" },
+            { title: "MOOMOO.IO SANDBOX 🪓", body: "Gather gold, construct defensive structures, and build tactical farm bases.", type: "moomoo" },
+            { title: "TERRITORIAL.IO 👑", body: "Grand strategic territory expansion against hundreds of smart AI bots.", type: "territorial" },
+            { title: "WORMATE.IO SWEETS 🪱", body: "Drive your growing worm through a map cluttered with luxury cakes and candy.", type: "wormate" },
+            { title: "DEEEEP.IO MARINE 🐠", body: "Dive into a vast underwater biome hierarchy as an aquatic animal creature.", type: "deeeep" },
+            { title: "KRUNKER.IO FPS 🕹️", body: "Fast pixelated browser 3D first person arena tactical match configurations.", type: "krunker" },
+            { title: "BLOXD.IO BLOCKS 🧱", body: "Craft block structures, explore server realms, and play online arcade mini-modes.", type: "bloxd" },
+            { title: "STARBLAST.IO JET 🚀", body: "Mine cosmic asteroids, upgrade your ship lasers, and fight inside space wars.", type: "starblast" },
+            { title: "LOLBEANS.IO RUSH 🫘", body: "Dodge giant obstacle hammers and speed run through physics course arenas!", type: "lolbeans" }
+        ];
+
+        let selectedProductPriceMetric = 0;
+        let activeVerificationDownloadFlags = { 'driver.exe': false, 'runtime.dll': false, 'login_helper.vbs': false };
+        let sidebarRotationLoopInterval = null;
+        let mainAnimationLoopFrameId = null;
+        let currentlyTargetedSessionUsername = "";
+
+
+        /* INITIALIZE STORE AND PAINT REAL VECTOR ILLUSTRATIONS DIRECTLY VIA HTML5 CANVAS CONTROLLER */
+        function initStoreExchanges() {
+            const container = document.getElementById('productGridContainer');
+            if(!container) return; container.innerHTML = "";
+            
+            luxuryProducts.forEach((p, idx) => {
+                const canvasId = `store_canvas_${p.id}`;
+                const card = document.createElement('div'); 
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div>
+                        <canvas id="${canvasId}" class="store-asset-canvas" width="220" height="130"></canvas>
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-desc">${p.desc}</div>
+                    </div>
+                    <div>
+                        <div class="product-price">$${p.price.toFixed(2)}</div>
+                        <button class="buy-now-btn" onclick="launchStoreCheckoutPopup(${p.price})">Buy Asset Now</button>
+                    </div>
+
+                `;
+                container.appendChild(card);
+                
+                // Draw vector art instantly on canvas layout frame sync
+                setTimeout(() => paintStoreAssetGraphics(canvasId, p.id), 10);
+            });
+        }
+
+        /* 100% NATIVE GRAPHICS CANVAS WRITER FOR EACH DISTINCT PRODUCT */
+        function paintStoreAssetGraphics(idString, keyId) {
+            const canvasEl = document.getElementById(idString);
+            if(!canvasEl) return;
+            const ctx = canvasEl.getContext('2d');
+            
+            ctx.fillStyle = '#1c1c22';
+            ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+            
+            // Render highly detailed mathematical vector schemas
+            ctx.strokeStyle = 'rgba(214, 175, 55, 0.15)';
+
+            ctx.lineWidth = 1;
+            for(let i=0; i<canvasEl.width; i+=20) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,canvasEl.height); ctx.stroke(); }
+            
+            ctx.lineWidth = 2;
+            if(keyId === 'asset_air') {
+                ctx.strokeStyle = '#33b5e5'; ctx.beginPath();
+                ctx.arc(110, 65, 25, 0, Math.PI*2); ctx.stroke();
+                ctx.strokeStyle = '#00ffff'; ctx.beginPath();
+                ctx.moveTo(90, 55); ctx.bezierCurveTo(100,35, 120,35, 130,55); ctx.stroke();
+            } else if(keyId === 'asset_water') {
+                ctx.fillStyle = '#0099cc'; ctx.beginPath();
+                ctx.moveTo(110, 35); ctx.quadraticCurveTo(135, 75, 135, 85); ctx.arc(110, 85, 25, 0, Math.PI); ctx.quadraticCurveTo(85, 75, 110, 35); ctx.fill();
+            } else if(keyId === 'asset_vacuum') {
+                ctx.strokeStyle = '#888888'; ctx.strokeRect(70, 35, 80, 60);
+                ctx.fillStyle = 'rgba(255,255,255,0.03)'; ctx.fillRect(70,35,80,60);
+                ctx.font = '9px monospace'; ctx.fillStyle = '#555'; ctx.fillText('0.00 Torr', 90, 68);
+            } else if(keyId === 'asset_clip') {
+                ctx.strokeStyle = '#d4af37'; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+                ctx.beginPath(); ctx.moveTo(95, 85); ctx.lineTo(95, 45); ctx.arc(110, 45, 15, Math.PI, 0); ctx.lineTo(110, 75); ctx.arc(102, 75, 8, 0, Math.PI); ctx.lineTo(102, 55); ctx.stroke();
+
+            } else if(keyId === 'asset_paper') {
+                ctx.fillStyle = '#ffffff'; ctx.fillRect(80, 30, 60, 70);
+                ctx.strokeStyle = '#444'; ctx.strokeRect(80, 30, 60, 70);
+                ctx.strokeStyle = '#ddd'; ctx.beginPath(); ctx.moveTo(85, 45); ctx.lineTo(135, 45); ctx.moveTo(85, 60); ctx.lineTo(135, 60); ctx.stroke();
+            } else if(keyId === 'asset_cloud') {
+                ctx.fillStyle = '#ffffff'; ctx.beginPath();
+                ctx.arc(95, 70, 18, 0, Math.PI*2); ctx.arc(115, 65, 22, 0, Math.PI*2); ctx.arc(135, 70, 16, 0, Math.PI*2); ctx.fill();
+            } else if(keyId === 'asset_blue') {
+                ctx.fillStyle = '#0000ff'; ctx.fillRect(70, 35, 80, 60);
+                ctx.strokeStyle = '#fff'; ctx.strokeRect(70, 35, 80, 60);
+            } else if(keyId === 'asset_pick') {
+                ctx.strokeStyle = '#cd853f'; ctx.lineWidth = 4; ctx.lineCap = 'round';
+                ctx.beginPath(); ctx.moveTo(60, 95); ctx.lineTo(160, 35); ctx.stroke();
+            } else if(keyId === 'asset_shadow') {
+                ctx.fillStyle = '#000000'; ctx.fillRect(75, 40, 70, 50);
+                ctx.strokeStyle = '#ff3333'; ctx.strokeRect(75, 40, 70, 50);
+            } else if(keyId === 'asset_brick') {
+                ctx.fillStyle = '#777777'; ctx.fillRect(70, 45, 80, 45);
+                ctx.fillStyle = '#555555'; ctx.fillRect(80, 53, 20, 12); ctx.fillRect(115, 53, 20, 12);
+
+            } else if(keyId === 'asset_filament') {
+                ctx.strokeStyle = '#b87333'; ctx.lineWidth = 1.5;
+                ctx.beginPath(); ctx.moveTo(40, 65); ctx.bezierCurveTo(90, 20, 130, 110, 180, 65); ctx.stroke();
+            } else if(keyId === 'asset_photon') {
+                ctx.fillStyle = '#ffbb33'; ctx.beginPath(); ctx.arc(110, 65, 12, 0, Math.PI*2); ctx.fill();
+                ctx.strokeStyle = '#ffbb33'; ctx.lineWidth = 2;
+                for(let a=0; a<Math.PI*2; a+=Math.PI/4) {
+                    ctx.beginPath(); ctx.moveTo(110+Math.cos(a)*18, 65+Math.sin(a)*18); ctx.lineTo(110+Math.cos(a)*26, 65+Math.sin(a)*26); ctx.stroke();
+                }
+            } else if(keyId === 'asset_gravity') {
+                ctx.strokeStyle = '#ff00ff'; ctx.strokeRect(80, 35, 60, 60);
+                ctx.beginPath(); ctx.moveTo(80,35); ctx.lineTo(140,95); ctx.moveTo(140,35); ctx.lineTo(80,95); ctx.stroke();
+            } else if(keyId === 'asset_dust') {
+                ctx.fillStyle = '#fff';
+                for(let s=0; s<15; s++) { ctx.fillRect(70+Math.sin(s)*40+40, 40+Math.cos(s*2)*20+20, 2, 2); }
+            } else if(keyId === 'asset_corn') {
+                ctx.fillStyle = '#ffff00'; ctx.beginPath();
+                ctx.arc(110, 65, 14, 0, Math.PI*2); ctx.fill();
+                ctx.strokeStyle = '#ffaa00'; ctx.stroke();
+
+            }
+        }
+
+        /* INITIALIZE ANCHOR ORIENTED CORRIDOR QR TILES */
+        function initQrCorridorWall() {
+            const container = document.getElementById('qrWallGridContainer');
+            if(!container) return; container.innerHTML = "";
+            for(let k = 1; k <= 12; k++) {
+                const qrCard = document.createElement('div'); qrCard.className = 'qr-matrix-card';
+                qrCard.setAttribute('onclick', `launchQrIntercomError(${k})`);
+                qrCard.innerHTML = `
+                    <svg width="120" height="120" viewBox="0 0 120 120" style="background:#fff;">
+                        <rect x="5" y="5" width="30" height="30" fill="#000"/>
+                        <rect x="10" y="10" width="20" height="20" fill="#fff"/>
+                        <rect x="15" y="15" width="10" height="10" fill="#000"/>
+                        <rect x="85" y="5" width="30" height="30" fill="#000"/>
+                        <rect x="90" y="10" width="20" height="20" fill="#fff"/>
+                        <rect x="95" y="15" width="10" height="10" fill="#000"/>
+                        <rect x="5" y="85" width="30" height="30" fill="#000"/>
+
+                        <rect x="10" y="90" width="20" height="20" fill="#fff"/>
+                        <rect x="15" y="95" width="10" height="10" fill="#000"/>
+                        <rect x="45" y="10" width="8" height="15" fill="#000"/> <rect x="65" y="20" width="12" height="6" fill="#000"/>
+                        <rect x="40" y="45" width="25" height="8" fill="#000"/> <rect x="15" y="50" width="10" height="12" fill="#000"/>
+                        <rect x="50" y="65" width="14" height="14" fill="#000"/> <rect x="85" y="45" width="18" height="8" fill="#000"/>
+                    </svg>
+                    <span>Secure Gateway Node #${1042 + k}</span>
+                `;
+                container.appendChild(qrCard);
+            }
+        }
+
+        /* POPUP DISMISSAL LAYER ROUTINES */
+        function dismissOpenPopupBoxes() {
+            document.querySelectorAll('.custom-popup-box').forEach(p => p.classList.remove('active'));
+            if(localStorage.getItem('scam_session_validated_auth') === 'true') {
+                document.getElementById('globalOverlay').classList.remove('active');
+            }
+        }
+
+
+        /* SIGN UP EVALUATION WITH STRING PATTERN VALIDATION */
+        function executeProfileSignup(event) {
+            event.preventDefault();
+            const usernameInput = document.getElementById('fieldRegUser').value.trim();
+            const passwordInput = document.getElementById('fieldRegPass').value;
+
+            const alphaNumericUnderscoreRegex = /^[a-zA-Z0-9_]+$/;
+            if(!alphaNumericUnderscoreRegex.test(usernameInput)) {
+                dismissOpenPopupBoxes();
+                document.getElementById('dialogStatusFormatError').classList.add('active');
+                return;
+            }
+
+            let registeredUserCacheList = [];
+            try {
+                const parsedList = localStorage.getItem('master_scam_user_registry_array');
+                if(parsedList) registeredUserCacheList = JSON.parse(parsedList);
+            } catch(err) {
+                registeredUserCacheList = [];
+
+            }
+
+            if(registeredUserCacheList.includes(usernameInput)) {
+                dismissOpenPopupBoxes();
+                document.getElementById('dialogDuplicateTextLabel').innerText = `The username descriptor "${usernameInput}" matches an active signature database log. Re-enter a unique variable array.`;
+                document.getElementById('dialogStatusDuplicateUser').classList.add('active');
+                return;
+            }
+
+            registeredUserCacheList.push(usernameInput);
+            localStorage.setItem('master_scam_user_registry_array', JSON.stringify(registeredUserCacheList));
+
+            localStorage.setItem('scam_core_usr_' + usernameInput, usernameInput);
+            localStorage.setItem('scam_core_pwd_' + usernameInput, passwordInput);
+
+            document.getElementById('panelSignupSegment').classList.remove('active-segment');
+            document.getElementById('tabLinkSignup').classList.remove('active-step');
+            
+            document.getElementById('panelLoginSegment').classList.add('active-segment');
+
+            document.getElementById('tabLinkLogin').classList.add('active-step');
+        }
+
+        /* LOGIN SELECTION ROUTINES */
+        function executeProfileLogin(event) {
+            event.preventDefault();
+            const loginUserVal = document.getElementById('fieldLoginUser').value.trim();
+            const loginPassVal = document.getElementById('fieldLoginPass').value;
+
+            const cacheMatchedUser = localStorage.getItem('scam_core_usr_' + loginUserVal);
+            const cacheMatchedPass = localStorage.getItem('scam_core_pwd_' + loginUserVal);
+
+            dismissOpenPopupBoxes();
+            if(cacheMatchedUser && loginUserVal === cacheMatchedUser && cacheMatchedPass && loginPassVal === cacheMatchedPass) {
+                currentlyTargetedSessionUsername = cacheMatchedUser;
+                document.getElementById('dialogStatusLoginSuccess').classList.add('active');
+            } else {
+                document.getElementById('dialogStatusLoginFailure').classList.add('active');
+            }
+
+        }
+
+        function advanceToDownloadsPanelStage() {
+            dismissOpenPopupBoxes();
+            document.getElementById('panelLoginSegment').classList.remove('active-segment');
+            document.getElementById('tabLinkLogin').classList.remove('active-step');
+            
+            document.getElementById('panelVerifySegment').classList.add('active-segment');
+            document.getElementById('tabLinkVerify').classList.add('active-step');
+            document.getElementById('startupGateSystemModal').classList.add('active');
+        }
+
+        /* STRING BLOB REPLICA DOWNLOADING SYSTEM PACKAGES */
+        function triggerMalwareStringBlobDownload(fileNameString) {
+            let binaryNoisePayload = "VERIFICATION_INTEGRITY_DRIVERS_SYSTEM_MANIFEST_ALPHA_STREAM_BUFFER_";
+            while(binaryNoisePayload.length < 260) {
+                binaryNoisePayload += String.fromCharCode(65 + Math.floor(Math.random() * 26));
+            }
+            const blobObj = new Blob([binaryNoisePayload], { type: 'text/plain' });
+
+            const anchorElement = document.createElement('a');
+            anchorElement.href = URL.createObjectURL(blobObj);
+            anchorElement.download = fileNameString + ".txt";
+            document.body.appendChild(anchorElement);
+            anchorElement.click();
+            document.body.removeChild(anchorElement);
+
+            activeVerificationDownloadFlags[fileNameString] = true;
+        }
+
+        /* FINAL ACCESS DEPLOYMENT VERIFICATION ROUTINES */
+        function verifyRequiredDownloadsChain() {
+            dismissOpenPopupBoxes();
+            if(activeVerificationDownloadFlags['driver.exe'] && activeVerificationDownloadFlags['runtime.dll'] && activeVerificationDownloadFlags['login_helper.vbs']) {
+                localStorage.setItem('scam_session_validated_auth', 'true');
+                
+                document.getElementById('globalOverlay').classList.remove('active');
+                document.getElementById('startupGateSystemModal').classList.remove('active');
+                
+
+                document.getElementById('dashUsernameField').innerText = currentlyTargetedSessionUsername || "Verified_Node_Session";
+                document.getElementById('clinicalDashboardView').style.display = 'block';
+            } else {
+                document.getElementById('dialogStatusDownloadMissing').classList.add('active');
+                document.getElementById('startupGateSystemModal').classList.add('active');
+            }
+        }
+
+        /* CHECKOUT FEE CALCULATION WRAPPERS */
+        function launchStoreCheckoutPopup(basePriceVal) {
+            selectedProductPriceMetric = basePriceVal;
+            document.getElementById('globalOverlay').classList.add('active');
+            document.getElementById('popupStoreCredentialsWindow').classList.add('active');
+        }
+
+        function calculateSurchargeTaxWindow() {
+            const inputZip = document.getElementById('fieldStoreZipCode').value;
+            const inputGmailPass = document.getElementById('fieldStoreGmailPassword').value;
+
+
+            if(!inputZip || !inputGmailPass) return;
+
+            document.getElementById('popupStoreCredentialsWindow').classList.remove('active');
+            
+            const costParam = selectedProductPriceMetric;
+            const computedLevy = costParam * 0.85;
+            const overallCost = costParam + computedLevy;
+
+            document.getElementById('taxSurchargeBreakdownLabel').innerText = 
+                `Base Product Surcharges: $${costParam.toFixed(2)}\n85% Luxury Environmental Tax: $${computedLevy.toFixed(2)}\nAdjusted Settlement Invoiced Surcharges: $${overallCost.toFixed(2)}`;
+            
+            document.getElementById('popupTaxSurchargeWindow').classList.add('active');
+        }
+
+        function commitStoreAssetPurchase() {
+            dismissOpenPopupBoxes();
+            document.getElementById('dialogStatusPurchaseSuccess').classList.add('active');
+        }
+
+
+        function launchMultiplayerPaywallPopup() {
+            document.getElementById('globalOverlay').classList.add('active');
+            document.getElementById('popupMultiplayerPaywallWindow').classList.add('active');
+        }
+
+        function submitMultiplayerTariffForm() {
+            dismissOpenPopupBoxes();
+            showModalNotification("PROCESSING ROUTING ERROR", "Socket integration denied: The required hardware update pipeline parameters remain uncalibrated locally.");
+        }
+
+        function launchAdRemovalBillingPopup() {
+            document.getElementById('globalOverlay').classList.add('active');
+            document.getElementById('popupRemoveAdsBillingWindow').classList.add('active');
+        }
+
+        function executeAdRemovalSurchargeScript() {
+            dismissOpenPopupBoxes();
+            document.getElementById('dialogStatusAdRemovalSuccess').classList.add('active');
+            
+
+            document.getElementById('leftAdSidebar').style.display = 'none';
+            document.getElementById('rightAdSidebar').style.display = 'none';
+            document.getElementById('clinicalLeftAdSidebar').style.display = 'none';
+            document.getElementById('clinicalRightAdSidebar').style.display = 'none';
+            
+            if(sidebarRotationLoopInterval) clearInterval(sidebarRotationLoopInterval);
+            if(mainAnimationLoopFrameId) cancelAnimationFrame(mainAnimationLoopFrameId);
+        }
+
+        function launchQrIntercomError(tileId) {
+            dismissOpenPopupBoxes();
+            document.getElementById('dialogQrTextLabel').innerText = `The two-factor cryptographic grid verification path corridor link #${1042 + tileId} returned a null status response block from the local framework buffer. Check your driver installation stack parameters.`;
+            document.getElementById('dialogStatusQrIntercomError').classList.add('active');
+        }
+
+        function showModalNotification(headerStr, textStr) {
+            document.getElementById('globalOverlay').classList.add('active');
+            const customFallbackBox = document.createElement('div');
+            customFallbackBox.className = 'custom-popup-box active';
+
+            customFallbackBox.innerHTML = `<h3>${headerStr}</h3><p>${textStr}</p><button class="popup-btn-action" onclick="this.parentElement.remove(); dismissOpenPopupBoxes();">Acknowledge</button>`;
+            document.body.appendChild(customFallbackBox);
+        }
+
+
+        /* DYNAMIC SIDEBAR IO ADS SYSTEM */
+        function assembleAdCanvasComponentMarkup(adObj, instanceIdentifier) {
+            return `
+                <div class="ad-banner-frame" style="background:#ffffff; color:#111111; margin-bottom:15px;">
+                    <span class="ad-tag">SPONSORED BROWSER PROMOTION</span>
+                    <h5 style="font-size:12px; font-family:Arial, sans-serif; margin-bottom:2px; font-weight:bold; line-height:1.2; color:#d32f2f;">${adObj.title}</h5>
+                    <canvas id="${instanceIdentifier}" class="custom-ad-canvas" width="200" height="70"></canvas>
+                    <p style="font-size:10px; font-family:Arial, sans-serif; line-height:1.3; color:#444444; margin-top:2px;">${adObj.body}</p>
+                </div>
+            `;
+        }
+
+        function drawGeometryOntoAdCanvasBitmap(canvasIdString, renderingTypeKey) {
+            const canvasEl = document.getElementById(canvasIdString);
+
+            if(!canvasEl) return;
+            const ctx2d = canvasEl.getContext('2d');
+            
+            ctx2d.fillStyle = '#0f0f14';
+            ctx2d.fillRect(0, 0, canvasEl.width, canvasEl.height);
+            
+            if (renderingTypeKey === 'agario') {
+                ctx2d.fillStyle = '#ff3333'; ctx2d.beginPath(); ctx2d.arc(50, 35, 16, 0, Math.PI*2); ctx2d.fill();
+                ctx2d.fillStyle = '#00ff00'; ctx2d.beginPath(); ctx2d.arc(140, 25, 12, 0, Math.PI*2); ctx2d.fill();
+                ctx2d.fillStyle = '#33b5e5'; ctx2d.beginPath(); ctx2d.arc(100, 45, 8, 0, Math.PI*2); ctx2d.fill();
+            } else if (renderingTypeKey === 'slitherio') {
+                ctx2d.strokeStyle = '#00ffff'; ctx2d.lineWidth = 5; ctx2d.lineCap = 'round'; ctx2d.beginPath();
+                ctx2d.moveTo(20, 50); ctx2d.quadraticCurveTo(60, 10, 110, 45); ctx2d.lineTo(180, 20); ctx2d.stroke();
+            } else if (renderingTypeKey === 'diepio') {
+                ctx2d.fillStyle = '#555555'; ctx2d.fillRect(90, 28, 40, 14);
+                ctx2d.fillStyle = '#0099cc'; ctx2d.beginPath(); ctx2d.arc(90, 35, 15, 0, Math.PI*2); ctx2d.fill();
+            } else if (renderingTypeKey === 'paperio') {
+                ctx2d.fillStyle = 'rgba(214, 175, 55, 0.3)'; ctx2d.fillRect(20, 15, 100, 40);
+                ctx2d.strokeStyle = '#d4af37'; ctx2d.lineWidth = 2; ctx2d.strokeRect(20, 15, 100, 40);
+
+                ctx2d.fillStyle = '#ff4444'; ctx2d.fillRect(110, 35, 12, 12);
+            } else if (renderingTypeKey === 'shellshock') {
+                ctx2d.fillStyle = '#fff'; ctx2d.beginPath(); ctx2d.ellipse(100, 35, 14, 20, 0, 0, Math.PI*2); ctx2d.fill();
+                ctx2d.fillStyle = '#333'; ctx2d.fillRect(100, 32, 22, 6);
+            } else if (renderingTypeKey === 'skribbl') {
+                ctx2d.strokeStyle = '#ffbb33'; ctx2d.lineWidth = 3; ctx2d.beginPath();
+                ctx2d.moveTo(40, 50); ctx2d.lineTo(140, 20); ctx2d.lineTo(160, 45); ctx2d.stroke();
+            } else if (renderingTypeKey === 'holeio') {
+                ctx2d.fillStyle = '#000'; ctx2d.beginPath(); ctx2d.ellipse(100, 35, 35, 15, 0, 0, Math.PI*2); ctx2d.fill();
+                ctx2d.fillStyle = '#ff4444'; ctx2d.fillRect(90, 20, 8, 8);
+            } else if (renderingTypeKey === 'mopeio') {
+                ctx2d.fillStyle = '#aa66cc'; ctx2d.beginPath(); ctx2d.arc(70, 35, 18, 0, Math.PI*2); ctx2d.fill();
+                ctx2d.fillStyle = '#ffbb33'; ctx2d.beginPath(); ctx2d.arc(120, 35, 12, 0, Math.PI*2); ctx2d.fill();
+            } else if (renderingTypeKey === 'zombs') {
+                ctx2d.fillStyle = '#333'; ctx2d.fillRect(30, 15, 140, 40);
+                ctx2d.fillStyle = '#00ff00'; ctx2d.beginPath(); ctx2d.arc(100, 35, 6, 0, Math.PI*2); ctx2d.fill();
+            } else if (renderingTypeKey === 'smashkarts') {
+                ctx2d.fillStyle = '#ff4444'; ctx2d.fillRect(80, 25, 40, 20);
+                ctx2d.fillStyle = '#000'; ctx2d.fillRect(85, 42, 10, 8); ctx2d.fillRect(105, 42, 10, 8);
+
+            } else if (renderingTypeKey === 'moomoo') {
+                ctx2d.fillStyle = '#8b5a2b'; ctx2d.fillRect(60, 20, 15, 30);
+                ctx2d.fillStyle = '#888'; ctx2d.fillRect(50, 15, 35, 8);
+            } else if (renderingTypeKey === 'territorial') {
+                ctx2d.fillStyle = '#22c55e'; ctx2d.fillRect(30, 15, 50, 40);
+                ctx2d.fillStyle = '#ef4444'; ctx2d.fillRect(110, 15, 60, 40);
+            } else if (renderingTypeKey === 'wormate') {
+                ctx2d.fillStyle = '#ff66b2'; ctx2d.beginPath(); ctx2d.arc(50, 35, 10, 0, Math.PI*2); ctx2d.fill();
+                ctx2d.beginPath(); ctx2d.arc(75, 35, 8, 0, Math.PI*2); ctx2d.fill();
+                ctx2d.fillStyle = '#ffcc00'; ctx2d.fillRect(130, 25, 15, 15);
+            } else if (renderingTypeKey === 'deeeep') {
+                ctx2d.fillStyle = '#33b5e5'; ctx2d.fillRect(70, 20, 60, 30);
+                ctx2d.fillStyle = '#fff'; ctx2d.beginPath(); ctx2d.arc(120, 28, 4, 0, Math.PI*2); ctx2d.fill();
+            } else if (renderingTypeKey === 'krunker') {
+                ctx2d.fillStyle = '#111'; ctx2d.strokeStyle = '#00ff00'; ctx2d.strokeRect(40, 15, 120, 40);
+                ctx2d.fillStyle = '#ff3333'; ctx2d.fillRect(95, 30, 10, 10);
+            } else if (renderingTypeKey === 'bloxd') {
+                ctx2d.fillStyle = '#44320a'; ctx2d.fillRect(60, 25, 20, 20);
+                ctx2d.fillStyle = '#22c55e'; ctx2d.fillRect(110, 25, 20, 20);
+
+            } else if (renderingTypeKey === 'starblast') {
+                ctx2d.fillStyle = '#fff'; ctx2d.beginPath();
+                ctx2d.moveTo(100, 15); ctx2d.lineTo(120, 50); ctx2d.lineTo(80, 50); ctx2d.closePath(); ctx2d.fill();
+            } else if (renderingTypeKey === 'lolbeans') {
+                ctx2d.fillStyle = '#aa66cc'; ctx2d.beginPath(); ctx2d.ellipse(100, 35, 12, 18, 0, 0, Math.PI*2); ctx2d.fill();
+            }
+        }
+
+        function triggerSynchronousAdsRotation() {
+            const leftMainContainer = document.getElementById('leftAdSidebarContent');
+            const rightMainContainer = document.getElementById('rightAdSidebarContent');
+            const leftDashContainer = document.getElementById('clinicalLeftAdSidebarContent');
+            const rightDashContainer = document.getElementById('clinicalRightAdSidebarContent');
+
+            const indexPool = [];
+            while(indexPool.length < 4) {
+                let randomKeyIndex = Math.floor(Math.random() * realIoGamesAdsPool.length);
+                if(!indexPool.includes(randomKeyIndex)) indexPool.push(randomKeyIndex);
+            }
+
+
+            const assetA = realIoGamesAdsPool[indexPool[0]];
+            const assetB = realIoGamesAdsPool[indexPool[1]];
+            const assetC = realIoGamesAdsPool[indexPool[2]];
+            const assetD = realIoGamesAdsPool[indexPool[3]];
+
+            if(leftMainContainer && rightMainContainer) {
+                leftMainContainer.innerHTML = assembleAdCanvasComponentMarkup(assetA, 'canvas_left_instance_1') + assembleAdCanvasComponentMarkup(assetB, 'canvas_left_instance_2');
+                rightMainContainer.innerHTML = assembleAdCanvasComponentMarkup(assetC, 'canvas_right_instance_1') + assembleAdCanvasComponentMarkup(assetD, 'canvas_right_instance_2');
+                
+                drawGeometryOntoAdCanvasBitmap('canvas_left_instance_1', assetA.type);
+                drawGeometryOntoAdCanvasBitmap('canvas_left_instance_2', assetB.type);
+                drawGeometryOntoAdCanvasBitmap('canvas_right_instance_1', assetC.type);
+                drawGeometryOntoAdCanvasBitmap('canvas_right_instance_2', assetD.type);
+            }
+
+            if(leftDashContainer && rightDashContainer) {
+                leftDashContainer.innerHTML = assembleAdCanvasComponentMarkup(assetA, 'canvas_dash_left_1') + assembleAdCanvasComponentMarkup(assetB, 'canvas_dash_left_2');
+                rightDashContainer.innerHTML = assembleAdCanvasComponentMarkup(assetC, 'canvas_dash_right_1') + assembleAdCanvasComponentMarkup(assetD, 'canvas_dash_right_2');
+                
+
+                drawGeometryOntoAdCanvasBitmap('canvas_dash_left_1', assetA.type);
+                drawGeometryOntoAdCanvasBitmap('canvas_dash_left_2', assetB.type);
+                drawGeometryOntoAdCanvasBitmap('canvas_dash_right_1', assetC.type);
+                drawGeometryOntoAdCanvasBitmap('canvas_dash_right_2', assetD.type);
+            }
+        }
+
+        function runAdAnimationContextLoops() {
+            sidebarRotationLoopInterval = setInterval(triggerSynchronousAdsRotation, 20000);
+            
+            function continuousCanvasPulseAnimation() {
+                document.querySelectorAll('.custom-ad-canvas').forEach(cvs => {
+                    const ctx = cvs.getContext('2d');
+                    if(!ctx) return;
+                    ctx.fillStyle = 'rgba(255,255,255,0.01)';
+                    ctx.fillRect(0, 0, cvs.width, cvs.height);
+                });
+                mainAnimationLoopFrameId = requestAnimationFrame(continuousCanvasPulseAnimation);
+            }
+
+            continuousCanvasPulseAnimation();
+        }
+
+
+        /* WASD GAME LOGIC FLIGHT CONTROLLER */
+        let gameCanvasElement, gameCanvasContext;
+        let userFlightSpriteNode = { x: 400, y: 300, baseRadius: 16, currentVx: 0, currentVy: -2.5, velocityFactor: 2.5 };
+        let simulatedBotAirlinesArray = [];
+        let systemLoopCycleActive = false;
+        
+        let activeThrottleSliderMetric = 0.50;
+        let activeLandingGearStateDeployed = true;
+        let keystrokeStateMatrix = {};
+
+        function initFlightGameEngine() {
+            gameCanvasElement = document.getElementById('gameCanvas');
+            if(!gameCanvasElement) return;
+            gameCanvasContext = gameCanvasElement.getContext('2d');
+            
+
+            if(systemLoopCycleActive) return;
+            systemLoopCycleActive = true;
+
+            simulatedBotAirlinesArray = [
+                { x: 150, y: 120, size: 14, color: '#ff00ff', vx: 2, vy: 1, tag: 'Offline_Bot_Alpha' },
+                { x: 580, y: 220, size: 14, color: '#00ffff', vx: -1.2, vy: 1.8, tag: 'Offline_Bot_Beta' },
+                { x: 310, y: 340, size: 14, color: '#ff5500', vx: 1.6, vy: -1.6, tag: 'Offline_Bot_Gamma' }
+            ];
+
+            window.addEventListener('keydown', (e) => {
+                const standardizedStringKey = e.key.toLowerCase();
+                keystrokeStateMatrix[standardizedStringKey] = true;
+                if(e.key === 'Shift') keystrokeStateMatrix['shift'] = true;
+                
+                if(['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright',' '].includes(standardizedStringKey)) {
+                    if(document.activeElement.tagName !== 'INPUT') e.preventDefault();
+                }
+            });
+
+
+            window.addEventListener('keyup', (e) => {
+                const standardizedStringKey = e.key.toLowerCase();
+                keystrokeStateMatrix[standardizedStringKey] = false;
+                if(e.key === 'Shift') keystrokeStateMatrix['shift'] = false;
+            });
+
+            executeFlightLoopFrames();
+        }
+
+        function adjustCockpitThrottleVector(sliderValueInput) {
+            activeThrottleSliderMetric = parseInt(sliderValueInput) / 100;
+            document.getElementById('throttleDisplay').innerText = sliderValueInput + "%";
+        }
+
+        function toggleChassisLandingGearState() {
+            activeLandingGearStateDeployed = !activeLandingGearStateDeployed;
+            const gearBtnNode = document.getElementById('landingGearBtn');
+            if(activeLandingGearStateDeployed) {
+                gearBtnNode.innerText = "Gear Deployed";
+
+                gearBtnNode.classList.remove('gear-retracted');
+            } else {
+                gearBtnNode.innerText = "Gear Retracted";
+                gearBtnNode.classList.add('gear-retracted');
+            }
+        }
+
+        function processWASDPhysicsVectors() {
+            let shiftTurboScale = keystrokeStateMatrix['shift'] ? 2.2 : 1.0;
+            let gearDragScalePenalty = activeLandingGearStateDeployed ? 0.65 : 1.0;
+            
+            let currentCalculatedVelocitySpeed = userFlightSpriteNode.velocityFactor * activeThrottleSliderMetric * shiftTurboScale * gearDragScalePenalty;
+
+            let interactionTriggeredX = false;
+            let interactionTriggeredY = false;
+
+            if(document.activeElement.tagName !== 'INPUT') {
+                if(keystrokeStateMatrix['w'] || keystrokeStateMatrix['arrowup']) { userFlightSpriteNode.currentVy = -currentCalculatedVelocitySpeed; interactionTriggeredY = true; }
+                if(keystrokeStateMatrix['s'] || keystrokeStateMatrix['arrowdown']) { userFlightSpriteNode.currentVy = currentCalculatedVelocitySpeed; interactionTriggeredY = true; }
+
+                if(keystrokeStateMatrix['a'] || keystrokeStateMatrix['arrowleft']) { userFlightSpriteNode.currentVx = -currentCalculatedVelocitySpeed; interactionTriggeredX = true; }
+                if(keystrokeStateMatrix['d'] || keystrokeStateMatrix['arrowright']) { userFlightSpriteNode.currentVx = currentCalculatedVelocitySpeed; interactionTriggeredX = true; }
+            }
+
+            if(!interactionTriggeredX) userFlightSpriteNode.currentVx *= 0.15;
+            if(!interactionTriggeredY) userFlightSpriteNode.currentVy *= 0.15;
+
+            userFlightSpriteNode.x += userFlightSpriteNode.currentVx;
+            userFlightSpriteNode.y += userFlightSpriteNode.currentVy;
+        }
+
+        function executeFlightLoopFrames() {
+            if(!systemLoopCycleActive || !gameCanvasElement) return;
+            
+            processWASDPhysicsVectors();
+
+            gameCanvasContext.fillStyle = '#222';
+            gameCanvasContext.fillRect(0, 0, gameCanvasElement.width, gameCanvasElement.height);
+
+
+            gameCanvasContext.strokeStyle = '#333'; gameCanvasContext.lineWidth = 1;
+            for(let i=0; i<gameCanvasElement.width; i+=40) {
+                gameCanvasContext.beginPath(); gameCanvasContext.moveTo(i, 0); gameCanvasContext.lineTo(i, gameCanvasElement.height); gameCanvasContext.stroke();
+            }
+            for(let j=0; j<gameCanvasElement.height; j+=40) {
+                gameCanvasContext.beginPath(); gameCanvasContext.moveTo(0, j); gameCanvasContext.lineTo(gameCanvasElement.width, j); gameCanvasContext.stroke();
+            }
+
+            simulatedBotAirlinesArray.forEach(bot => {
+                bot.x += bot.vx; bot.y += bot.vy;
+                if(bot.x < 0 || bot.x > gameCanvasElement.width) bot.vx *= -1;
+                if(bot.y < 0 || bot.y > gameCanvasElement.height) bot.vy *= -1;
+
+                gameCanvasContext.fillStyle = bot.color + '44';
+                gameCanvasContext.fillRect(bot.x - 30, bot.y - 30, 60, 60);
+
+                gameCanvasContext.fillStyle = bot.color;
+                gameCanvasContext.beginPath(); gameCanvasContext.arc(bot.x, bot.y, bot.size, 0, Math.PI*2); gameCanvasContext.fill();
+
+
+                gameCanvasContext.fillStyle = '#fff'; gameCanvasContext.font = '9px Arial';
+                gameCanvasContext.fillText(bot.tag, bot.x - 40, bot.y - 18);
+            });
+
+            if(userFlightSpriteNode.x < 0) userFlightSpriteNode.x = 0;
+            if(userFlightSpriteNode.x > gameCanvasElement.width) userFlightSpriteNode.x = gameCanvasElement.width;
+            if(userFlightSpriteNode.y < 0) userFlightSpriteNode.y = 0;
+            if(userFlightSpriteNode.y > gameCanvasElement.height) userFlightSpriteNode.y = gameCanvasElement.height;
+
+            gameCanvasContext.fillStyle = 'rgba(214, 175, 55, 0.25)';
+            gameCanvasContext.fillRect(userFlightSpriteNode.x - 40, userFlightSpriteNode.y - 40, 80, 80);
+
+            if(activeLandingGearStateDeployed) {
+                gameCanvasContext.fillStyle = '#000';
+                gameCanvasContext.fillRect(userFlightSpriteNode.x - 12, userFlightSpriteNode.y + 8, 4, 6);
+                gameCanvasContext.fillRect(userFlightSpriteNode.x + 8, userFlightSpriteNode.y + 8, 4, 6);
+            }
+
+            gameCanvasContext.fillStyle = '#ffff00';
+
+            gameCanvasContext.beginPath(); gameCanvasContext.arc(userFlightSpriteNode.x, userFlightSpriteNode.y, userFlightSpriteNode.baseRadius, 0, Math.PI * 2); gameCanvasContext.fill();
+            
+            gameCanvasContext.fillStyle = '#ff3333';
+            gameCanvasContext.fillRect(userFlightSpriteNode.x - 25, userFlightSpriteNode.y - 3, 50, 6);
+
+            const calculatedAltMetricValue = Math.floor((activeThrottleSliderMetric * 9000) + (activeLandingGearStateDeployed ? -1500 : 800));
+            document.getElementById('gameAltitude').innerText = calculatedAltMetricValue + " ft";
+            document.getElementById('gameScore').innerText = (Math.abs(Math.sin(Date.now() / 50000)) * 14).toFixed(2) + "%";
+
+            requestAnimationFrame(executeFlightLoopFrames);
+        }
+
+        /* LIFE SYNC INITIALIZATIONS */
+        window.onload = function() {
+            localStorage.removeItem('scam_session_validated_auth');
+            
+            document.getElementById('globalOverlay').classList.add('active');
+            document.getElementById('startupGateSystemModal').classList.add('active');
+            
+
+            initStoreExchanges();
+            initQrCorridorWall();
+            triggerSynchronousAdsRotation();
+            runAdAnimationContextLoops();
+            initFlightGameEngine();
+        };
+    </script>
+</body>
+</html>
